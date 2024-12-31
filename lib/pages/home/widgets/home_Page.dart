@@ -5,6 +5,7 @@ import 'package:food_nutritional_cloud/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../detail/widgets/chat_page.dart';
+
 class HomePage2 extends StatefulWidget {
   const HomePage2({super.key});
 
@@ -15,67 +16,98 @@ class HomePage2 extends StatefulWidget {
 class _HomePage2State extends State<HomePage2> {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  void signOut (){
-    final authService= Provider.of<AuthService>(context,listen:false);
+
+  void signOut() {
+    final authService = Provider.of<AuthService>(context, listen: false);
     authService.signOut();
   }
+
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("welcome home page"),
-        actions: [
-          //sign out
-          IconButton(
-              onPressed: signOut,
-              icon: const Icon(Icons.logout),
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight), // Définir la hauteur de l'AppBar
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30), // Coins arrondis à gauche
+            bottomRight: Radius.circular(30), // Coins arrondis à droite
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.blueAccent], // Dégradé bleu
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: AppBar(
+              title: Text(
+                "Messenger",
+                style: TextStyle(
+                  color: Colors.white, // Titre en blanc
+                  fontWeight: FontWeight.bold, // Titre en gras
+                ),
+              ),
+              centerTitle: true, // Centrer le titre
+              backgroundColor: Colors.transparent, // Rendre l'AppBar transparente
+              elevation: 0, // Supprimer l'ombre de l'AppBar
+            ),
+          ),
+        ),
       ),
       body: _buildUserList(),
     );
   }
-
-  Widget _buildUserList(){
-
+  Widget _buildUserList() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
-      builder: (context,snapshot){
-        if (snapshot.hasError){
-          return const Text('error');
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const Text('Error');
         }
-        if (snapshot.connectionState==ConnectionState.waiting){
-          return const Text('loading...');
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Text('Loading...');
         }
-        return  ListView(
-          children: snapshot.data!.docs.map<Widget>((doc)=>_buildUserListItem(doc)).toList(),
+        return Container(
+          color: Colors.white38, // Fond bleu
+          child: ListView(
+            children: snapshot.data!.docs.map<Widget>((doc) => _buildUserListItem(doc)).toList(),
+          ),
         );
       },
     );
   }
 
+  Widget _buildUserListItem(DocumentSnapshot document) {
+    Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
-  Widget  _buildUserListItem(DocumentSnapshot document ){
-    Map<String, dynamic> data =document.data()! as Map<String,dynamic>;
-
-    if( _firebaseAuth.currentUser!.email !=data['email']){
-      return ListTile(
-        title:Text(data['email']) ,
-        onTap: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context)=>ChatPage(
-                receiverUserEmail: data['email'],
-                receiverUserID: data['uid'],
-              ),
+    // Ne pas afficher l'utilisateur connecté
+    if (_firebaseAuth.currentUser!.email != data['email']) {
+      return Column(
+        children: [
+          ListTile(
+            title: Text(
+              data['email'],
+              style: TextStyle(color: Colors.black,), // Texte en blanc
             ),
-          );
-        },
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChatPage(
+                    receiverUserEmail: data['email'],
+                    receiverUserID: data['uid'],
+                  ),
+                ),
+              );
+            },
+          ),
+          Divider(color: Colors.black), // Ligne noire pour séparer
+        ],
       );
-    }
-    else{
+    } else {
       return Container();
     }
-
   }
 }

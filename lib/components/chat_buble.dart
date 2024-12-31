@@ -13,7 +13,7 @@ class ChatBuble extends StatelessWidget {
       ),
       child: Text(
         mesaage ,
-        style: const TextStyle(fontSize: 16,color: Colors.white),
+        style: const TextStyle(fontSize: 16,color: Colors.black),
       ),
     );
   }

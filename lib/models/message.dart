@@ -12,8 +12,8 @@ class Message {
     required this.senderId,
     required this.senderEmail,
     required this.receiverId,
-    required this.message,
     required this.timestamp,
+    required this.message,
 });
 
 

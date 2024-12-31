@@ -6,6 +6,7 @@ import 'package:food_nutritional_cloud/pages/detail/widgets/register.dart';
 import 'package:food_nutritional_cloud/pages/home/home.dart';
 import 'package:food_nutritional_cloud/pages/home/home.dart';
 import 'package:food_nutritional_cloud/pages/home/login_page.dart';
+import 'package:food_nutritional_cloud/pages/home/widgets/home_Page.dart';
 import 'package:food_nutritional_cloud/services/auth/auth_gate.dart';
 import 'package:food_nutritional_cloud/services/auth/auth_service.dart';
 import 'package:food_nutritional_cloud/services/auth/login_or_register.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gamestore',
-      // home: HomePage(),
+      //home: HomePage(),
+     // home: HomePage2(),
       // home: LoginPage(),
       // home: LoginOrRegister(),
       home: AuthGate(),

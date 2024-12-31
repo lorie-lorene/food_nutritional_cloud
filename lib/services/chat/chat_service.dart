@@ -5,33 +5,34 @@ import 'package:food_nutritional_cloud/models/message.dart';
 
 
 class ChatService extends ChangeNotifier{
-  final FirebaseAuth _firebaseAuth= FirebaseAuth.instance;
-  final FirebaseFirestore _fireStore=FirebaseFirestore.instance;
+    final FirebaseAuth _firebaseAuth= FirebaseAuth.instance;
+    final FirebaseFirestore _fireStore=FirebaseFirestore.instance;
 
-  //sending
-Future <void> sendMessage(String receiverId, String message) async{
-final String currentUserId=_firebaseAuth.currentUser!.uid;
-final String currentUserEmail=_firebaseAuth.currentUser!.email.toString();
-final Timestamp timestamp = Timestamp.now();
+    //sending
+  Future <void> sendMessage(String receiverId, String message) async{
+  final String currentUserId=_firebaseAuth.currentUser!.uid;
+  final String currentUserEmail=_firebaseAuth.currentUser!.email.toString();
+  final Timestamp timestamp = Timestamp.now();
 
-Message newMessage=Message(
-    senderId: currentUserId,
-    senderEmail: currentUserEmail,
-    receiverId: receiverId,
-    message: message,
-    timestamp: timestamp,);
-List<String> ids=[currentUserId,currentUserEmail];
-ids.sort();
-String chatRoomId=ids.join("_");
-await _fireStore.collection('chat_rooms').doc(chatRoomId).collection('message').add(newMessage.toMap());
+  Message newMessage=Message(
+      senderId: currentUserId,
+      senderEmail: currentUserEmail,
+      receiverId: receiverId,
+    timestamp: timestamp,
+      message: message,);
 
-}
-Stream<QuerySnapshot> getMessages(String userId,String otherUserId){
-  List <String> ids= [userId,otherUserId];
+  List<String> ids=[currentUserId,receiverId];
   ids.sort();
   String chatRoomId=ids.join("_");
-  return _fireStore.collection('chat_rooms').doc(chatRoomId).collection('message').orderBy('timestamp',descending: false).snapshots();
-}
+  await _fireStore.collection('chat_rooms').doc(chatRoomId).collection('messages').add(newMessage.toMap());
 
-// getting
+  }
+  Stream<QuerySnapshot> getMessages(String userId, String otherUserId){
+    List <String> ids= [userId,otherUserId];
+    ids.sort();
+    String chatRoomId=ids.join("_");
+    return _fireStore.collection('chat_rooms').doc(chatRoomId).collection('messages').orderBy('timestamp',descending: false).snapshots();
+  }
+
+  // getting
 }
