@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "181829103864",
+    "project_id": "foodnutritionalcloud",
+    "storage_bucket": "foodnutritionalcloud.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181829103864:android:2cb26c63d71ff36ba78b0d",
+        "android_client_info": {
+          "package_name": "com.example.food_nutritional_cloud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPr97L1BRZqYp9lkZXs6_21418OGpJFqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181829103864:android:888decd72c74e3b4a78b0d",
+        "android_client_info": {
+          "package_name": "com.foochat.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPr97L1BRZqYp9lkZXs6_21418OGpJFqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181829103864:android:07a34712828b93f2a78b0d",
+        "android_client_info": {
+          "package_name": "com.food.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPr97L1BRZqYp9lkZXs6_21418OGpJFqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
