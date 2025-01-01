@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_nutritional_cloud/pages/home/widgets/category.dart';
 import 'package:food_nutritional_cloud/pages/home/widgets/header.dart';
 import 'package:food_nutritional_cloud/pages/home/widgets/home_Page.dart';
+import 'package:food_nutritional_cloud/pages/home/widgets/imc_screen.dart';
 import 'package:food_nutritional_cloud/pages/home/widgets/search.dart';
 import 'package:provider/provider.dart';
 
@@ -18,14 +19,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0; // Indice pour déterminer quelle page afficher
 
-  // Liste des pages avec la page chat correctement assignée à l'index approprié
-  final List<Widget> _pages = [
-    HomePage(),      // Page d'accueil
-    HomePage(),      // Page IMC
-    HomePage(),      // Page FoodCloud
-    const HomePage2(), // Page Chat (correspond à la page HomePage2)
-    // Autres pages ici
-  ];
+  // // Liste des pages avec la page chat correctement assignée à l'index approprié
+  // final List<Widget> _pages = [
+  //   HomePage(),      // Page d'accueil
+  //   const ImcScreen(),      // Page IMC
+  //   HomePage(),      // Page FoodCloud
+  //   const HomePage2(), // Page Chat (correspond à la page HomePage2)
+  //   // Autres pages ici
+  // ];
 
   // Méthode de changement de page en fonction de l'index sélectionné
   void _onItemTapped(int index) {
@@ -84,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           ),
         );
       case 1:
-        return const HomePage(); // Page IMC
+        return const ImcScreen(); // Page IMC
       case 2:
         return const HomePage(); // Page FoodCloud
       case 3:
