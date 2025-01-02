@@ -6,6 +6,7 @@ import 'package:food_nutritional_cloud/pages/home/widgets/imc_screen.dart';
 import 'package:food_nutritional_cloud/pages/home/widgets/search.dart';
 import 'package:provider/provider.dart';
 
+import '../../screen/home.dart';
 import '../../services/auth/auth_service.dart';
 import '../detail/widgets/chat_page.dart';
 
@@ -87,7 +88,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return const ImcScreen(); // Page IMC
       case 2:
-        return const HomePage(); // Page FoodCloud
+        return const Home_Screen(); // Page FoodCloud
       case 3:
         return const HomePage2(); // Page Chat
       default:
