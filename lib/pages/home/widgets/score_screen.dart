@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pretty_gauge/pretty_gauge.dart';
-import 'package:share_plus/share_plus.dart';
+//import 'package:share_plus/share_plus.dart';
 
 class ScoreScreen extends StatelessWidget {
   final double bmiscore;
@@ -67,11 +67,11 @@ class ScoreScreen extends StatelessWidget {
               },
               child: const Text("Re-Calculate")),
           const SizedBox(width: 10,),
-          ElevatedButton(
-              onPressed: (){
-                Share.share("your BMI is ${bmiscore.toStringAsFixed(1)}  at age $age");
-              },
-              child: const Text("Share"))
+          // ElevatedButton(
+          //     onPressed: (){
+          //       Share.share("your BMI is ${bmiscore.toStringAsFixed(1)}  at age $age");
+          //     },
+          //     child: const Text("Share"))
         ],
         )
     
